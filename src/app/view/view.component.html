@@ -1,0 +1,46 @@
+<div class="container">
+  <br/>
+  <h1 class="text-center">Employee List</h1>
+  <br/>
+  <div class="row">
+  <label for="filter" class="col-3 col-sm-1 text-left">Filter By</label>
+  <input id="filter" name="filter" [(ngModel)]="searchvalue" (input)="search()" class="form-control col-8 offset-sm-0 col-sm-5" placeholder="Enter employee name to search.."/>
+  </div>
+  <label for="count">Total Number of Employees:{{length}}</label>
+<table class ="table table-hover text-center table-bordered" align="center">
+  <thead class="text-white bg-primary">
+    <th>Emp ID</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </thead>
+  <tr *ngFor="let u of employees; let indexOfElements=index">
+    <td>
+      <a routerLink="/details/{{u.id}}">
+      <span class="badge"><h6>{{u.id}}</h6></span>
+    </a>
+    </td>
+    <td id="name{{indexOfElements}}">
+      {{u.name}} 
+    </td>
+    <td id="loc{{indexOfElements}}">
+      {{u.location}}
+    </td>
+    <td id="email{{indexOfElements}}">
+      {{u.email}}
+    </td>
+    <td id="mob{{indexOfElements}}">
+      {{u.mobile}}
+    </td>
+    <td>
+      <a routerLink="/editEmployee"> <button class= 'btn btn-info' (click)="editService.setEmployee(u)">Edit{{u.id}}</button></a>
+    </td>
+    <td>
+      <button class= 'btn btn-info' (click)="deleteEmp(u.id)">Delete{{u.id}}</button>
+    </td>
+  </tr>
+</table>
+</div>

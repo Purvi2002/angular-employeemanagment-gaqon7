@@ -1,0 +1,45 @@
+<div class="container">
+  <br/>
+<h2 class="text-center">Edit Employee</h2>
+<br/>
+<div class="row" *ngIf="employee">
+<form #form="ngForm" class="col-sm-6 mx-auto" style="border:2px solid grey;padding:20px;border-radius:10px" novalidate>
+  <div class="form-group">
+    <label for="name">Employee Name</label>
+    <input class="form-control" id="name" name="name" maxLength="30" pattern="[A-Za-z ]{3,}" [(ngModel)]="employee.name"  ngModel #name="ngModel" required/>
+    <label *ngIf="name.invalid" class="alert alert-danger alert-dismissible w-100">Name should contain only alphabets and atleast 3 to 30 characters long</label>
+
+  </div>
+  <div class="form-group">
+   <label for="location">Location</label>
+  <select id="location" class="form-control" name="location" [(ngModel)]="employee.location" #loc="ngModel" ngModel required>
+    <option value="">Select Location</option>
+    <option value="Bangalore">Bangalore</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Pune">Pune</option>
+    <option value="Hyderabad">Hyderabad</option>
+  </select>
+   <label *ngIf="loc.invalid" class="alert alert-danger alert-dismissible w-100">Select employee location</label>
+  </div>
+  <div class="form-group">
+   <label for="email">Email</label>
+  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="employee.email" #email="ngModel" maxLength="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ngModel required/>
+   <label *ngIf="email.invalid" class="alert alert-danger alert-dismissible w-100">Enter valid email address (xx@xx.xx)</label>
+  </div>
+  <div class="form-group">
+  <label for="mobile">Mobile</label>
+  <input type="tel" id="mobile" name="mobile" class="form-control" [(ngModel)]="employee.mobile" #mobile="ngModel" maxLength="30" pattern="[0-9]{10}" ngModel required/>
+   <label *ngIf="mobile.invalid" class="alert alert-danger alert-dismissible w-100">Enter 10 digit mobile number</label>
+  </div>
+  
+  <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+  <button  type="submit" id="update" *ngIf="form.valid" class="btn btn-success ml-2" (click)="updateEmployee()">Update</button>
+  
+</form>
+</div>
+<div *ngIf="!employee" class="text-danger text-center">
+  Go back and Select any employee to edit
+  <br/>
+  <button type="button" class="btn btn-info" (click)="goBack()">Back</button>
+ </div>
+</div>

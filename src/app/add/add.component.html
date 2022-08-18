@@ -1,0 +1,109 @@
+<div class="container">
+  <h2 class="text-center">Add Employee</h2>
+
+  <div class="register-form">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="(onSubmit)"
+      class="col-sm-6 mx-auto"
+      style="border:2px solid grey;padding:20px;border-radius:10px"
+    >
+      <div class="form-group">
+        <label>Employee Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+        />
+        <div
+          class="alert alert-danger alert-dismissible w-100"
+          *ngIf="
+            (submitted && f.name.errors) ||
+            (form.get('name').errors &&
+              (form.get('name').dirty || form.get('name').touched))
+          "
+        >
+          <div>
+            Name should contain only alphabets and atleast 3 to 30 characters
+            long
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Location</label>
+        <select formControlName="location" class="form-control" name="location">
+          <option value="">Select Location</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Pune">Pune</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+        <!-- <div class="alert alert-danger alert-dismissible w-100"> -->
+        <label
+          class="alert alert-danger alert-dismissible w-100"
+          *ngIf="
+            form.get('location').errors &&
+            (form.get('location').dirty || form.get('location').touched)
+          "
+        >
+          Name should contain only alphabets and atleast 3 to 30 characters
+          long</label
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+        <label
+          class="alert alert-danger alert-dismissible w-100"
+          *ngIf="
+            form.get('email').errors &&
+            (form.get('email').dirty || form.get('email').touched)
+          "
+        >
+          Name should contain only alphabets and atleast 3 to 30 characters
+          long</label
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Mobile</label>
+        <input
+          type="tel"
+          id="mobile"
+          formControlName="mobile"
+          class="form-control"
+        />
+        <label
+          class="alert alert-danger alert-dismissible w-100"
+          *ngIf="
+            form.get('mobile').errors &&
+            (form.get('mobile').dirty || form.get('mobile').touched)
+          "
+        >
+          Name should contain only alphabets and atleast 3 to 30 characters
+          long</label
+        >
+      </div>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">
+          Back
+        </button>
+        <button type="submit" id="add" class="btn btn-success ml-2">
+          Submit
+        </button>
+      </div>
+      <!-- </div>
+        </div>
+      </div> -->
+    </form>
+  </div>
+</div>
